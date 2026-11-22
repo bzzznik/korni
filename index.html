@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KORNI.TLV hair design</title>
 <meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="KORNI.TLV — студия волос в Тель-Авиве. Стрижки, окрашивание, уход. Запись по телефону и в WhatsApp.">
 <meta property="og:title" content="KORNI.TLV — hair design, Tel Aviv">
 <meta property="og:type" content="website">
@@ -466,7 +468,8 @@ if(!T[L])L='ru';
 const t=k=>T[L][k]??T.ru[k]??k;
 const tr=o=>!o?'':typeof o==='string'?o:(o[L]||o.ru||'');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const src=p=>p?String(p).replace(/^\/+/,''):'';
+const src=p=>p?encodeURI(String(p).replace(/^\/+/,'')).replace(/["'()]/g,''):'';
+const safeUrl=u=>/^https:\/\//i.test(String(u||''))?String(u):'#';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let S={},G=[],P=[];const cart=new Map();let cat='all';
@@ -529,7 +532,8 @@ let heroVis=true;
 new IntersectionObserver(e=>{heroVis=e[0].isIntersecting},{}).observe($('#top'));
 function drawFall(tm){
   const dt=Math.min(.05,(tm-(drawFall.t||tm))/1000);drawFall.t=tm;
-  fx.clearRect(0,0,FW,FH);if(!pieces.length)return;
+  if(!pieces.length){if(drawFall.dirty){fx.clearRect(0,0,FW,FH);drawFall.dirty=false}return}
+  fx.clearRect(0,0,FW,FH);drawFall.dirty=true;
   const sv=scrollY-(drawFall.sy??scrollY);drawFall.sy=scrollY;
   for(let i=pieces.length-1;i>=0;i--){const q=pieces[i];
     q.vy+=420*dt;q.vx+=Math.sin(tm/400+i)*8*dt;q.vx*=.985;q.x+=q.vx*dt;q.y+=q.vy*dt-sv*.35;q.a+=q.va*dt;q.life-=dt*.32;
@@ -587,8 +591,8 @@ function render(){
   $$('.js-tel').forEach(a=>a.href='tel:'+(c.phone||'').replace(/[^+\d]/g,''));
   $$('.js-phone').forEach(e=>e.textContent=c.phone||'');
   $$('.js-wa').forEach(a=>a.href='https://wa.me/'+(c.whatsapp||'').replace(/\D/g,'')+'?text='+encodeURIComponent(t('wa_book')));
-  $$('.js-ig').forEach(a=>{a.href=c.instagram||'#';a.style.display=c.instagram?'':'none'});
-  $$('.js-map').forEach(a=>a.href=c.map||'#');
+  $$('.js-ig').forEach(a=>{a.href=safeUrl(c.instagram);a.style.display=c.instagram?'':'none'});
+  $$('.js-map').forEach(a=>a.href=safeUrl(c.map));
   {const ad=(c.address&&(c.address.en||c.address.he||c.address.ru))||'';const u='https://maps.google.com/maps?q='+encodeURIComponent(ad)+'&z=16&hl='+(L==='he'?'iw':L)+'&output=embed';
    $$('.js-gmap').forEach(f=>{if(ad&&f.dataset.u!==u){f.dataset.u=u;f.src=u}})}
   const ab=S.about||{};
@@ -599,7 +603,7 @@ function render(){
   $('#slist').innerHTML=(S.services||[]).map(s=>`<div class="srow rv"><span><span class="n">${esc(tr(s.name))}</span>${tr(s.desc)?`<span class="d">${esc(tr(s.desc))}</span>`:''}</span><span class="dots"></span><span class="pr">${s.price?`${t('from')} ${s.price} ₪`:''}</span></div>`).join('');
   {const fp=src(S.fly_photo)||src(ab.photo);if(fp)$('#mos3').style.backgroundImage=`url("${fp}")`;}
   const cols=+getComputedStyle(document.documentElement).getPropertyValue('--cols')||6,tileH=(innerWidth-12-(cols-1)*6)/cols*1.25,stageN=G.length?cols*Math.ceil((innerHeight-70)/(tileH+6)):0;
-  $('#mos2').innerHTML=Array.from({length:stageN},(_,i)=>{const g=G[i%G.length];return `<button data-src="${esc(src(g.image))}" aria-label="${esc(g.caption||t('works_h'))}"><img src="${esc(src(g.image))}" alt="${esc(g.caption||'')}"></button>`}).join('');
+  $('#mos2').innerHTML=Array.from({length:stageN},(_,i)=>{const g=G[i%G.length];return `<button data-src="${esc(src(g.image))}" aria-label="${esc(g.caption||t('works_h'))}"><img src="${esc(src(g.image))}" alt="${esc(g.caption||'')}" loading="lazy" decoding="async"></button>`}).join('');
   $('#w2').textContent=t('works_h').toUpperCase();
   $('#w3').textContent=t('about_h').toUpperCase();
   {const n=innerWidth<=600?4:6,gl=G.map(g=>src(g.image)),off=Math.floor(gl.length/2);
@@ -663,7 +667,8 @@ $$('.langs button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 
 const load=f=>fetch('data/'+f+'.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null);
 Promise.all([load('site'),load('gallery'),load('products')]).then(([s,g,p])=>{
-  S=s||{};G=(g||[]).filter(x=>x&&x.image);P=(p||[]).filter(x=>x&&tr(x.name));setLang(L);
+  S=s||{};G=(g||[]).filter(x=>x&&x.image);P=(p||[]).filter(x=>x&&tr(x.name)).map(x=>({...x,price:Math.max(0,Number(x.price)||0),category:['color','care','style'].includes(x.category)?x.category:'care'}));
+  S.services=(S.services||[]).map(x=>({...x,price:Math.max(0,Number(x.price)||0)}));setLang(L);
 });
 }
 </script>
