@@ -145,6 +145,9 @@ nav.top a:hover{color:var(--ink)}
 .fly .team .bt svg{width:34%;height:auto}
 .fly .team .bt.cr{background:radial-gradient(circle at 50% 55%,#fbf1e4,#e2c9a8 80%)}
 .fly .team .bt.cr svg{width:44%}
+.fly .team.tools{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fly .team.tools .bt.cr svg{width:min(30%,260px)}
+@media(max-width:600px){.fly .team.tools .bt.cr svg{width:62%}}
 .fly .mapbg{position:absolute;inset:0;transform:scale(1.15);will-change:transform;background:
  linear-gradient(28deg,transparent 47%,rgba(26,15,0,.55) 47.3%,rgba(26,15,0,.55) 48.4%,transparent 48.7%),
  linear-gradient(-62deg,transparent 58%,rgba(26,15,0,.45) 58.2%,rgba(26,15,0,.45) 59.6%,transparent 59.8%),
@@ -263,7 +266,7 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
   <symbol id="d-color" viewBox="0 0 60 120"><g fill="none" stroke="#1a0f00" stroke-width="2.4"><path d="M12 6h36l-4 84H16z"/><path d="M16 90h28v8H16zM22 98h16v18H22z"/><path d="M13 26h34" opacity=".5"/></g></symbol>
   <symbol id="d-style" viewBox="0 0 60 120"><g fill="none" stroke="#1a0f00" stroke-width="2.4"><rect x="8" y="38" width="44" height="12" rx="3"/><path d="M10 50h40v50a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8z"/><path d="M10 64h40" opacity=".5"/></g></symbol>
   <symbol id="t-scis" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="76" r="11"/><circle cx="62" cy="80" r="11"/><path d="M39 67L66 16M55 70L40 16"/><circle cx="49" cy="48" r="2.2"/></g></symbol>
-  <symbol id="t-comb" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 38H82V48H18Z"/><path d="M24 48V72M31 48V72M38 48V72M45 48V72M52 48V72M59 48V72M66 48V72M73 48V72M80 48V66"/></g></symbol>
+  <symbol id="t-comb" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 42H58V50H8Z"/><path d="M12 50V68M17 50V68M22 50V68M27 50V68M32 50V68M37 50V68M42 50V68M47 50V68M52 50V68M57 50V64"/><path d="M58 42L94 45Q96 46 94 47L58 50"/></g></symbol>
   <symbol id="t-brush" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 60H58Q56 84 36 84Q16 84 14 60Z"/><path d="M20 68H52" opacity=".5"/><path d="M58 52L84 16"/><path d="M50 62L56 50L62 54L56 66Z"/></g></symbol>
   <symbol id="t-dryer" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="62" cy="42" r="18"/><circle cx="62" cy="42" r="7"/><path d="M44 34H18V50H44M58 59L64 86H75L72 59M8 38H12M8 46H12"/></g></symbol>
   <symbol id="t-roll" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="16" width="36" height="68" rx="9"/><path d="M32 32H68M32 50H68M32 68H68"/><path d="M26 24H32M26 42H32M26 60H32M26 76H32M68 24H74M68 42H74M68 60H74M68 76H74" opacity=".6"/></g></symbol>
@@ -324,7 +327,7 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 
 <section class="fly fly-s" id="fly4" aria-hidden="true">
   <div class="stick">
-    <div class="team" id="mos4"></div>
+    <div class="team tools" id="mos4"></div>
     <svg class="mask" style="pointer-events:none"><defs><mask id="mk4"><rect width="100%" height="100%" fill="#fff"/><text id="w4" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">УСЛУГИ</text></mask></defs><rect id="c4" width="100%" height="100%" fill="#1a0f00" mask="url(#mk4)"/></svg>
     <div class="cap" id="cap4"><span id="cap4t"></span> <b>[ ₪ ]</b></div>
   </div>
@@ -560,8 +563,8 @@ function render(){
   $('#w2').textContent=t('works_h').toUpperCase();
   $('#w3').textContent=t('about_h').toUpperCase();
   {const n=innerWidth<=600?4:6,gl=G.map(g=>src(g.image)),off=Math.floor(gl.length/2);
-   const tools=['t-scis','t-comb','t-brush','t-dryer','t-roll','t-mirror'];
-   $('#mos4').innerHTML=Array.from({length:n},(_,i)=>`<div class="bt cr"><svg viewBox="0 0 100 100"><use href="#${tools[i%tools.length]}"/></svg></div>`).join('');
+   const tools=['t-scis','t-comb','t-brush','t-dryer'];
+   $('#mos4').innerHTML=Array.from({length:4},(_,i)=>`<div class="bt cr"><svg viewBox="0 0 100 100"><use href="#${tools[i%tools.length]}"/></svg></div>`).join('');
    const pi=P.filter(x=>x.image).map(x=>src(x.image)),cats=['care','color','style'];
    $('#mos5').innerHTML=Array.from({length:n},(_,i)=>pi.length?`<img src="${esc(pi[i%pi.length])}" alt="">`:`<div class="bt"><svg viewBox="0 0 60 120"><use href="#d-${cats[i%3]}"/></svg></div>`).join('');}
   $('#w4').textContent=t('svc_h').toUpperCase();$('#w5').textContent=t('shop_h').toUpperCase();$('#w6').textContent=t('ct_h').toUpperCase();
