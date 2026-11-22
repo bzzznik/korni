@@ -151,7 +151,14 @@ nav.top a:hover{color:var(--ink)}
  repeating-linear-gradient(0deg,transparent 0 46px,rgba(26,15,0,.1) 46px 47px),
  repeating-linear-gradient(90deg,transparent 0 46px,rgba(26,15,0,.1) 46px 47px),
  radial-gradient(circle at 50% 50%,#f0d6f5,#c48fd3 75%)}
-.fly .mpin{position:absolute;left:50%;top:50%;width:min(22vw,160px);height:auto;transform:translate(-50%,-90%);filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+.gmap{overflow:hidden;background:#e9cdef}
+.gmap iframe{position:absolute;left:-220px;top:-220px;width:calc(100% + 440px);height:calc(100% + 440px);border:0;filter:grayscale(1) contrast(1.12) brightness(1.04);pointer-events:none}
+.gmap .tint{position:absolute;inset:0;background:#D7A5E3;mix-blend-mode:multiply;pointer-events:none}
+.gmap.live iframe{left:0;top:0;width:100%;height:100%;pointer-events:auto}
+.mapcard.gmap{display:block;min-height:420px;background:#e9cdef}
+.maproute{position:absolute;left:16px;bottom:16px;z-index:2;box-shadow:0 8px 30px rgba(26,15,0,.35)}
+.fly .mapbg.gmap{background:#e9cdef}
+.fly .mpin{z-index:2;position:absolute;left:50%;top:50%;width:min(22vw,160px);height:auto;transform:translate(-50%,-90%);filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
 .fly .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:6px;padding:6px;align-content:start;transform:scale(1.15);transform-origin:center 40%;will-change:transform}
 .fly .mos button{position:relative;display:block;padding:0;border:0;background:#0e0800;overflow:hidden;cursor:zoom-in;aspect-ratio:4/5}
 .fly .mos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s,transform .6s,filter .6s;filter:saturate(.9)}
@@ -353,7 +360,7 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 
 <section class="fly fly-s" id="fly6" aria-hidden="true">
   <div class="stick">
-    <div class="mapbg" id="mos6"><svg class="mpin" viewBox="0 0 24 24"><path fill="#1a0f00" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+    <div class="mapbg gmap" id="mos6"><iframe class="js-gmap" title="map" loading="lazy" tabindex="-1" aria-hidden="true" referrerpolicy="no-referrer-when-downgrade"></iframe><i class="tint"></i><svg class="mpin" viewBox="0 0 24 24"><path fill="#1a0f00" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
     <svg class="mask" style="pointer-events:none"><defs><mask id="mk6"><rect width="100%" height="100%" fill="#fff"/><text id="w6" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">КОНТАКТЫ</text></mask></defs><rect id="c6" width="100%" height="100%" fill="#1a0f00" mask="url(#mk6)"/></svg>
     <div class="cap" id="cap6"><span id="cap6t"></span> <b>[ ⌂ ]</b></div>
   </div>
@@ -372,7 +379,10 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
         <a class="btn ghost js-ig" href="#" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Instagram</a>
       </div>
     </div>
-    <a class="mapcard js-map" href="#" target="_blank" rel="noopener"><div class="pin"><svg viewBox="0 0 24 24"><path fill="#D7A5E3" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span data-t="route">Построить маршрут</span></div></a>
+    <div class="mapcard gmap live">
+      <iframe class="js-gmap" title="Карта KORNI.TLV" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><i class="tint"></i>
+      <a class="btn solid maproute js-map" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span data-t="route">Построить маршрут</span></a>
+    </div>
   </div>
 </div></section>
 
@@ -528,6 +538,8 @@ function render(){
   $$('.js-wa').forEach(a=>a.href='https://wa.me/'+(c.whatsapp||'').replace(/\D/g,'')+'?text='+encodeURIComponent(t('wa_book')));
   $$('.js-ig').forEach(a=>{a.href=c.instagram||'#';a.style.display=c.instagram?'':'none'});
   $$('.js-map').forEach(a=>a.href=c.map||'#');
+  {const ad=(c.address&&(c.address.he||c.address.ru))||'';const u='https://maps.google.com/maps?q='+encodeURIComponent(ad)+'&z=16&hl='+(L==='he'?'iw':L)+'&output=embed';
+   $$('.js-gmap').forEach(f=>{if(ad&&f.dataset.u!==u){f.dataset.u=u;f.src=u}})}
   const ab=S.about||{};
   $('#aboutPhoto').src=src(ab.photo);
   $('#about1').innerHTML=tr(ab.text1).split(/\s+/).map(w=>`<span class="wd">${esc(w)}</span>`).join(' ');
