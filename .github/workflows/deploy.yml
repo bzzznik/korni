@@ -1,0 +1,42 @@
+# Публикует сайт на GitHub Pages после каждого изменения (в т.ч. из Pages CMS).
+# Заодно уменьшает загруженные фото до 1600px — чтобы сайт летал даже с фото прямо с телефона.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          mkdir _site
+          cp -r index.html assets data media _site/
+          [ -f CNAME ] && cp CNAME _site/ || true
+          sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick > /dev/null
+          find _site/media -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) \
+            -exec mogrify -auto-orient -strip -resize '1600x1600>' -quality 80 {} +
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

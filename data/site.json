@@ -1,0 +1,169 @@
+{
+  "fly_photo": "/media/team/fly.jpg",
+  "tagline": {
+    "ru": "Более 20 лет в сфере красоты. Мы знаем о красивых волосах всё ♡",
+    "en": "Over 20 years in beauty. We know everything about beautiful hair ♡",
+    "he": "מעל 20 שנה בתחום היופי. אנחנו יודעים הכל על שיער יפה ♡"
+  },
+  "contacts": {
+    "phone": "+972 53-304-5100",
+    "whatsapp": "972533045100",
+    "instagram": "https://www.instagram.com/korni.tlv/",
+    "map": "https://www.google.com/maps/search/?api=1&query=%D7%9E%D7%A8%D7%9B%D7%96+%D7%91%D7%A2%D7%9C%D7%99+%D7%9E%D7%9C%D7%90%D7%9B%D7%94+5+%D7%AA%D7%9C+%D7%90%D7%91%D7%99%D7%91",
+    "address": {
+      "ru": "Тель-Авив, ул. Мерказ Баалей Мелаха, 5",
+      "en": "5 Merkaz Ba’alei Melakha St, Tel Aviv",
+      "he": "מרכז בעלי מלאכה 5, תל אביב"
+    },
+    "hours": {
+      "ru": "Вс–Чт 10:00–20:00 · Пт 9:00–14:00",
+      "en": "Sun–Thu 10:00–20:00 · Fri 9:00–14:00",
+      "he": "א׳–ה׳ 10:00–20:00 · ו׳ 9:00–14:00"
+    }
+  },
+  "about": {
+    "photo": "/media/team/team-04.jpg",
+    "text1": {
+      "ru": "Мы — двое мастеров, которые смотрят на волосы как на материал: форму можно резать, оттенок — настраивать, а удобство — проектировать.",
+      "en": "We are two stylists who treat hair as material: shape can be cut, tone can be tuned, and comfort can be designed.",
+      "he": "אנחנו שני מעצבי שיער שמתייחסים לשיער כחומר: את הצורה אפשר לגזור, את הגוון לכוונן ואת הנוחות לתכנן."
+    },
+    "text2": {
+      "ru": "Мы за прозрачность: до начала обсуждаем план, длительность и стоимость. И да — здесь максимально спокойно.",
+      "en": "We keep it transparent: before we start, we agree on the plan, time and price. And yes — it’s very calm here.",
+      "he": "אנחנו בעד שקיפות: לפני שמתחילים מסכמים תוכנית, משך ומחיר. וכן — כאן ממש רגוע."
+    },
+    "strip": [
+      {
+        "image": "/media/team/team-02.jpg"
+      },
+      {
+        "image": "/media/team/team-10.jpg"
+      },
+      {
+        "image": "/media/team/team-08.jpg"
+      },
+      {
+        "image": "/media/team/team-05.jpg"
+      }
+    ]
+  },
+  "masters": [
+    {
+      "name": {
+        "ru": "Александр",
+        "en": "Alexander",
+        "he": "אלכסנדר"
+      },
+      "role": {
+        "ru": "Линия и форма",
+        "en": "Line & shape",
+        "he": "קו וצורה"
+      },
+      "desc": {
+        "ru": "Стрижка, которая держит силуэт без литров стайлинга.",
+        "en": "A cut that holds its silhouette without litres of styling.",
+        "he": "תספורת ששומרת על הצללית בלי ליטרים של מוצרי עיצוב."
+      },
+      "phone": ""
+    },
+    {
+      "name": {
+        "ru": "Юрий",
+        "en": "Yuri",
+        "he": "יורי"
+      },
+      "role": {
+        "ru": "Цвет и уход",
+        "en": "Colour & care",
+        "he": "צבע וטיפוח"
+      },
+      "desc": {
+        "ru": "Мягкие переходы, здоровый блеск и текстура для реальной жизни.",
+        "en": "Soft transitions, healthy shine and texture for real life.",
+        "he": "מעברים רכים, ברק בריא וטקסטורה לחיים האמיתיים."
+      },
+      "phone": ""
+    }
+  ],
+  "services": [
+    {
+      "name": {
+        "ru": "Женская стрижка",
+        "en": "Women’s haircut",
+        "he": "תספורת נשים"
+      },
+      "desc": {
+        "ru": "С укладкой",
+        "en": "With styling",
+        "he": "כולל עיצוב"
+      },
+      "price": 250
+    },
+    {
+      "name": {
+        "ru": "Мужская стрижка",
+        "en": "Men’s haircut",
+        "he": "תספורת גברים"
+      },
+      "desc": {
+        "ru": "",
+        "en": "",
+        "he": ""
+      },
+      "price": 150
+    },
+    {
+      "name": {
+        "ru": "Окрашивание в один тон",
+        "en": "Single-tone colour",
+        "he": "צבע בגוון אחד"
+      },
+      "desc": {
+        "ru": "Корни или полная длина",
+        "en": "Roots or full length",
+        "he": "שורשים או כל האורך"
+      },
+      "price": 350
+    },
+    {
+      "name": {
+        "ru": "Сложное окрашивание",
+        "en": "Complex colour",
+        "he": "צביעה מורכבת"
+      },
+      "desc": {
+        "ru": "Airtouch, балаяж, блонд",
+        "en": "Airtouch, balayage, blonde",
+        "he": "איירטאץ׳, בליאז׳, בלונד"
+      },
+      "price": 900
+    },
+    {
+      "name": {
+        "ru": "Уходовая процедура",
+        "en": "Hair treatment",
+        "he": "טיפול לשיער"
+      },
+      "desc": {
+        "ru": "Восстановление и блеск",
+        "en": "Repair and shine",
+        "he": "שיקום וברק"
+      },
+      "price": 200
+    },
+    {
+      "name": {
+        "ru": "Вечерняя и свадебная причёска",
+        "en": "Evening & bridal styling",
+        "he": "תסרוקת ערב וכלה"
+      },
+      "desc": {
+        "ru": "",
+        "en": "",
+        "he": ""
+      },
+      "price": 400
+    }
+  ]
+}

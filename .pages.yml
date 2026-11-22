@@ -1,0 +1,305 @@
+# Pages CMS — панель управления сайтом KORNI.TLV
+# Русский обязателен, English и עברית — по желанию (если пусто, на сайте покажется русский)
+
+media:
+  input: media
+  output: /media
+content:
+- name: gallery
+  label: 📷 Работы (галерея и главная)
+  type: file
+  path: data/gallery.json
+  format: json
+  list: true
+  fields:
+  - name: image
+    label: Фото
+    type: image
+    options:
+      path: media/works
+      extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      rename: safe
+  - name: caption
+    label: Подпись (необязательно)
+    type: string
+- name: products
+  label: 🛍 Магазин
+  type: file
+  path: data/products.json
+  format: json
+  list: true
+  fields:
+  - name: image
+    label: Фото товара
+    type: image
+    options:
+      path: media/products
+      extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      rename: safe
+  - type: object
+    fields:
+    - name: ru
+      label: Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+    - name: he
+      label: עברית
+      type: string
+    name: name
+    label: Название
+  - type: object
+    fields:
+    - name: ru
+      label: Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+    - name: he
+      label: עברית
+      type: string
+    name: desc
+    label: Описание (объём, для чего)
+  - name: brand
+    label: Бренд
+    type: string
+  - name: category
+    label: Категория
+    type: select
+    options:
+      values:
+      - name: color
+        label: Окрашивание
+      - name: care
+        label: Уход
+      - name: style
+        label: Стайлинг
+  - name: price
+    label: Цена, ₪
+    type: number
+  - name: available
+    label: В наличии
+    type: boolean
+    default: true
+- name: site
+  label: ✏️ О нас, услуги, контакты
+  type: file
+  path: data/site.json
+  format: json
+  fields:
+  - name: fly_photo
+    label: Большое фото «полёт сквозь KORNI» (лучше горизонтальное или крупный портрет)
+    type: image
+    options:
+      path: media/team
+      extensions:
+      - jpg
+      - jpeg
+      - png
+      - webp
+      rename: safe
+  - type: object
+    fields:
+    - name: ru
+      label: Русский
+      type: text
+    - name: en
+      label: English
+      type: text
+    - name: he
+      label: עברית
+      type: text
+    name: tagline
+    label: Подпись под логотипом
+  - name: about
+    label: О нас
+    type: object
+    fields:
+    - name: photo
+      label: Главное фото
+      type: image
+      options:
+        path: media/team
+        extensions:
+        - jpg
+        - jpeg
+        - png
+        - webp
+        rename: safe
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: text
+      - name: en
+        label: English
+        type: text
+      - name: he
+        label: עברית
+        type: text
+      name: text1
+      label: Текст — абзац 1
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: text
+      - name: en
+        label: English
+        type: text
+      - name: he
+        label: עברית
+        type: text
+      name: text2
+      label: Текст — абзац 2
+    - name: strip
+      label: Фото из студии (лента)
+      type: object
+      list: true
+      fields:
+      - name: image
+        label: Фото
+        type: image
+        options:
+          path: media/team
+          extensions:
+          - jpg
+          - jpeg
+          - png
+          - webp
+          rename: safe
+  - name: masters
+    label: Мастера
+    type: object
+    list:
+      collapsible: true
+    fields:
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: name
+      label: Имя
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: role
+      label: Специализация
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: text
+      - name: en
+        label: English
+        type: text
+      - name: he
+        label: עברית
+        type: text
+      name: desc
+      label: О себе
+    - name: phone
+      label: Личный телефон (необязательно)
+      type: string
+  - name: services
+    label: Услуги и цены
+    type: object
+    list:
+      collapsible: true
+    fields:
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: name
+      label: Услуга
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: desc
+      label: Уточнение (необязательно)
+    - name: price
+      label: Цена «от», ₪
+      type: number
+  - name: contacts
+    label: Контакты
+    type: object
+    fields:
+    - name: phone
+      label: Телефон (+972 …)
+      type: string
+    - name: whatsapp
+      label: WhatsApp — только цифры, 972…
+      type: string
+    - name: instagram
+      label: Instagram — ссылка
+      type: string
+    - name: map
+      label: Ссылка на Google Maps
+      type: string
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: address
+      label: Адрес
+    - type: object
+      fields:
+      - name: ru
+        label: Русский
+        type: string
+      - name: en
+        label: English
+        type: string
+      - name: he
+        label: עברית
+        type: string
+      name: hours
+      label: Часы работы

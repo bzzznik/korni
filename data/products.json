@@ -1,0 +1,172 @@
+[
+  {
+    "name": {
+      "ru": "Шампунь восстанавливающий",
+      "en": "Repair shampoo",
+      "he": "שמפו משקם"
+    },
+    "desc": {
+      "ru": "Для повреждённых и окрашенных волос, 300 мл",
+      "en": "For damaged and coloured hair, 300 ml",
+      "he": "לשיער פגום וצבוע, 300 מ״ל"
+    },
+    "brand": "",
+    "category": "care",
+    "price": 85,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Маска для окрашенных волос",
+      "en": "Colour-care mask",
+      "he": "מסכה לשיער צבוע"
+    },
+    "desc": {
+      "ru": "Сохраняет цвет и блеск, 250 мл",
+      "en": "Keeps colour and shine, 250 ml",
+      "he": "שומרת על הצבע והברק, 250 מ״ל"
+    },
+    "brand": "",
+    "category": "care",
+    "price": 110,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Кондиционер питательный",
+      "en": "Nourishing conditioner",
+      "he": "מרכך מזין"
+    },
+    "desc": {
+      "ru": "Лёгкое расчёсывание, 300 мл",
+      "en": "Easy detangling, 300 ml",
+      "he": "סירוק קל, 300 מ״ל"
+    },
+    "brand": "",
+    "category": "care",
+    "price": 75,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Масло аргановое",
+      "en": "Argan oil",
+      "he": "שמן ארגן"
+    },
+    "desc": {
+      "ru": "Для кончиков и блеска, 100 мл",
+      "en": "For ends and shine, 100 ml",
+      "he": "לקצוות ולברק, 100 מ״ל"
+    },
+    "brand": "",
+    "category": "care",
+    "price": 140,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Шампунь против желтизны",
+      "en": "Purple shampoo",
+      "he": "שמפו סגול"
+    },
+    "desc": {
+      "ru": "Для блонда, 300 мл",
+      "en": "For blondes, 300 ml",
+      "he": "לבלונד, 300 מ״ל"
+    },
+    "brand": "",
+    "category": "color",
+    "price": 95,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Тонирующий бальзам",
+      "en": "Toning balm",
+      "he": "באלם גוון"
+    },
+    "desc": {
+      "ru": "Освежает оттенок между визитами",
+      "en": "Refreshes tone between visits",
+      "he": "מרענן את הגוון בין ביקורים"
+    },
+    "brand": "",
+    "category": "color",
+    "price": 80,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Маска-фиксатор цвета",
+      "en": "Colour-lock mask",
+      "he": "מסכה לקיבוע צבע"
+    },
+    "desc": {
+      "ru": "После окрашивания, 200 мл",
+      "en": "After colouring, 200 ml",
+      "he": "אחרי צביעה, 200 מ״ל"
+    },
+    "brand": "",
+    "category": "color",
+    "price": 130,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Термозащитный спрей",
+      "en": "Heat protection spray",
+      "he": "ספריי הגנה מחום"
+    },
+    "desc": {
+      "ru": "До 230 °C, 150 мл",
+      "en": "Up to 230 °C, 150 ml",
+      "he": "עד 230°C, 150 מ״ל"
+    },
+    "brand": "",
+    "category": "style",
+    "price": 90,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Мусс для объёма",
+      "en": "Volume mousse",
+      "he": "מוס לנפח"
+    },
+    "desc": {
+      "ru": "Лёгкая фиксация, 200 мл",
+      "en": "Light hold, 200 ml",
+      "he": "אחיזה קלה, 200 מ״ל"
+    },
+    "brand": "",
+    "category": "style",
+    "price": 70,
+    "image": "",
+    "available": true
+  },
+  {
+    "name": {
+      "ru": "Паста матовая",
+      "en": "Matte paste",
+      "he": "משחה מט"
+    },
+    "desc": {
+      "ru": "Текстура без блеска, 85 г",
+      "en": "Texture, no shine, 85 g",
+      "he": "טקסטורה בלי ברק, 85 גר׳"
+    },
+    "brand": "",
+    "category": "style",
+    "price": 95,
+    "image": "",
+    "available": true
+  }
+]
