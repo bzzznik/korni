@@ -22,7 +22,7 @@
     }
   },
   "about": {
-    "photo": "/media/team/team-04.jpg",
+    "photo": "/media/team/team-03.jpg",
     "text1": {
       "ru": "Мы — двое мастеров, которые смотрят на волосы как на материал: форму можно резать, оттенок — настраивать, а удобство — проектировать.",
       "en": "We are two stylists who treat hair as material: shape can be cut, tone can be tuned, and comfort can be designed.",
@@ -35,13 +35,7 @@
     },
     "strip": [
       {
-        "image": "/media/team/team-02.jpg"
-      },
-      {
-        "image": "/media/team/team-10.jpg"
-      },
-      {
-        "image": "/media/team/team-08.jpg"
+        "image": "/media/team/team-14.jpg"
       },
       {
         "image": "/media/team/team-05.jpg"
