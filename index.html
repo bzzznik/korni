@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru" dir="ltr">
+<html lang="ru" dir="ltr" class="locked">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KORNI.TLV hair design</title>
+<meta name="robots" content="noindex,nofollow">
 <meta name="description" content="KORNI.TLV — студия волос в Тель-Авиве. Стрижки, окрашивание, уход. Запись по телефону и в WhatsApp.">
 <meta property="og:title" content="KORNI.TLV — hair design, Tel Aviv">
 <meta property="og:type" content="website">
@@ -261,6 +262,18 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 .rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){#fall{display:none}*{animation:none!important;transition:none!important}.rv,.logo span,.tag,.ctas{opacity:1;transform:none}.fly{height:auto}.fly .stick{position:relative;height:70vh}.fly .full{opacity:1}.fly .mask{display:none}.fly .cap{opacity:1}}
+
+/* замок до запуска */
+#gate{position:fixed;inset:0;z-index:200;background:var(--bg);display:none;place-content:center;justify-items:center;gap:22px;padding:24px;text-align:center}
+.locked #gate{display:grid}.locked body{overflow:hidden}
+#gate .lg{font:400 clamp(40px,9vw,80px)/1 var(--f);letter-spacing:.04em;color:#fff}
+#gate .lg b{font-weight:400;color:var(--pink)}
+#gate p{margin:0;color:var(--muted);font-size:18px}
+#gate form{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#gate input{min-height:52px;width:min(260px,70vw);background:var(--bg2);border:1px solid var(--line);color:var(--ink);font:18px var(--f);padding:0 14px;text-align:center;letter-spacing:.1em}
+#gate .err{color:#e88;font-size:16px;min-height:20px}
+#gate.shake form{animation:shk .4s}
+@keyframes shk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 </style>
 </head>
 <body>
@@ -284,6 +297,12 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
   <symbol id="t-mirror" viewBox="0 0 100 100"><g fill="none" stroke="#1a0f00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="38" r="24"/><circle cx="50" cy="38" r="18" opacity=".5"/><path d="M50 62V88M44 88H56M38 28Q42 21 50 20"/></g></symbol>
 </svg>
 
+<div id="gate" role="dialog" aria-label="Вход">
+  <div class="lg">KORNI.TLV <b>√∞</b></div>
+  <p>Сайт скоро откроется</p>
+  <form id="gateF"><input id="gateP" type="password" placeholder="пароль" autocomplete="current-password" aria-label="Пароль"><button class="btn solid" type="submit">Войти</button></form>
+  <div class="err" id="gateE"></div>
+</div>
 <header id="hdr">
   <a class="logo-s" href="#top">KORNI.TLV <b>√∞</b></a>
   <nav class="top">
@@ -423,6 +442,16 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
   </div>
 </aside>
 
+<script>
+/* замок до запуска: пароль хранится только как SHA-256 */
+(function(){const H='035550b984a5daceff2606e70cddead1c1abe2b10cb119834c22c17cc1627025',K='korni_gate';const d=document.documentElement;
+try{if(localStorage.getItem(K)===H)d.classList.remove('locked')}catch(e){}
+const hex=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+document.getElementById('gateF').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('gateP').value.trim();
+  if(await hex(v)===H){try{localStorage.setItem(K,H)}catch(e){}d.classList.remove('locked');dispatchEvent(new Event('resize'))}
+  else{const g=document.getElementById('gate');document.getElementById('gateE').textContent='Неверный пароль';g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake')}});
+if(d.classList.contains('locked'))setTimeout(()=>document.getElementById('gateP').focus(),50);})();
+</script>
 <script>
 {
 /* Тексты интерфейса. Всё содержимое (фото, товары, тексты о себе, контакты) — в папке data/ и редактируется через Pages CMS */

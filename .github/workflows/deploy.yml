@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: |
           mkdir _site
-          cp -r index.html assets data media _site/
+          cp -r index.html robots.txt assets data media _site/
           [ -f CNAME ] && cp CNAME _site/ || true
           sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick > /dev/null
           find _site/media -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) \
