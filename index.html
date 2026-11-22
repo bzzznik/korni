@@ -136,6 +136,10 @@ nav.top a:hover{color:var(--ink)}
 :root{--cols:6}
 @media(max-width:1000px){:root{--cols:4}}
 @media(max-width:600px){:root{--cols:3}}
+.fly .team{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:6px;padding:6px;transform:scale(1.15);will-change:transform}
+.fly .team img{width:100%;height:100%;object-fit:cover;min-height:0}
+@media(max-width:600px){.fly .team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#fly3{height:220vh}
 .fly .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:6px;padding:6px;align-content:start;transform:scale(1.15);transform-origin:center 40%;will-change:transform}
 .fly .mos button{position:relative;display:block;padding:0;border:0;background:#0e0800;overflow:hidden;cursor:zoom-in;aspect-ratio:4/5}
 .fly .mos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s,transform .6s,filter .6s;filter:saturate(.9)}
@@ -269,6 +273,14 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
     <div class="full" id="flyFull"></div>
     <svg class="mask" id="flyMask"><defs><mask id="mk"><rect width="100%" height="100%" fill="#fff"/><text id="flyWord" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">KORNI</text></mask></defs><rect id="flyCover" width="100%" height="100%" fill="#1a0f00" mask="url(#mk)"/></svg>
     <div class="cap" id="flyCap"><span data-t="fly1">Корни — это начало</span> <b>[hair design]</b></div>
+  </div>
+</section>
+
+<section class="fly" id="fly3" aria-hidden="true">
+  <div class="stick">
+    <div class="team" id="mos3"></div>
+    <svg class="mask" style="pointer-events:none"><defs><mask id="mk3"><rect width="100%" height="100%" fill="#fff"/><text id="w3" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">О НАС</text></mask></defs><rect id="c3" width="100%" height="100%" fill="#1a0f00" mask="url(#mk3)"/></svg>
+    <div class="cap" id="cap3"><span id="cap3t"></span> <b>[ √ ]</b></div>
   </div>
 </section>
 
@@ -455,7 +467,7 @@ hero.addEventListener('touchmove',e=>{const p=e.touches[0];mv(p.clientX,p.client
 
 /* ===== полёт сквозь буквы ===== */
 const ff=$('#flyFull');
-const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82}];
+const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82},{sec:$('#fly3'),word:$('#w3'),cover:$('#c3'),bg:$('#mos3'),cap:$('#cap3'),fit:.7}];
 function fitWords(){FLIES.forEach(f=>{const st=f.sec.querySelector('.stick');f.cx=st.clientWidth/2;f.cy=st.clientHeight/2;
   f.word.setAttribute('x',f.cx);f.word.setAttribute('y',f.cy);
   f.word.setAttribute('font-size',100);let w=0;try{w=f.word.getComputedTextLength()}catch(e){}if(w)f.word.setAttribute('font-size',Math.min(100*st.clientWidth*f.fit/w,st.clientHeight*.5))})}
@@ -506,6 +518,10 @@ function render(){
   const cols=+getComputedStyle(document.documentElement).getPropertyValue('--cols')||6,tileH=(innerWidth-12-(cols-1)*6)/cols*1.25,stageN=G.length?cols*Math.ceil(innerHeight/(tileH+6)):0;
   $('#mos2').innerHTML=Array.from({length:stageN},(_,i)=>{const g=G[i%G.length];return `<button data-src="${esc(src(g.image))}" aria-label="${esc(g.caption||t('works_h'))}"><img src="${esc(src(g.image))}" alt="${esc(g.caption||'')}"></button>`}).join('');
   $('#w2').textContent=t('works_h').toUpperCase();
+  $('#w3').textContent=t('about_h').toUpperCase();
+  {const tp=[ab.photo,...(ab.strip||[]).map(x=>x.image)].filter(Boolean).map(src);const n=innerWidth<=600?4:6;
+   $('#mos3').innerHTML=tp.length?Array.from({length:n},(_,i)=>`<img src="${esc(tp[i%tp.length])}" alt="">`).join(''):'';}
+  $('#cap3t').textContent=(S.masters||[]).map(x=>tr(x.name)).filter(Boolean).join(L==='en'?' & ':L==='he'?' ו':' и ');
   if(calm)$('#mos2').classList.add('live');
   fitWords();(document.fonts&&document.fonts.ready||Promise.resolve()).then(()=>{fitWords();onScroll()});
   renderChips();renderGoods();renderCart();watch();onScroll();
