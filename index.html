@@ -422,7 +422,7 @@ function sizeHair(){DPR=Math.min(devicePixelRatio||1,1.5);W=cv.clientWidth;H=cv.
       strands.push({x:lx+(Math.random()-.5)*W/nLocks*1.6,len:llen*(.82+Math.random()*.24),seg,ph:lph+(Math.random()-.5)*.5,amp:lamp*(.8+Math.random()*.4),curl,cph:Math.random()*6.28,
         c:r<.12?4:r<.22?2:r<.3?1:base,al:Math.random()<.15?2:Math.random()<.5?1:0,w:Math.random()<.2?1:0,
         off:new Float32Array(seg+1),offy:new Float32Array(seg+1)});strands[strands.length-1].cut=strands[strands.length-1].len;strands[strands.length-1].th=.04+Math.random()*.5}}
-  lightP.x=W/2;lightP.y=H*.45;grads=[];for(let c=0;c<COLS.length;c++){grads[c]=[];for(let a=0;a<3;a++){const A=[.22,.4,.7][a],g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(${COLS[c]},${A})`);g.addColorStop(.55,`rgba(${COLS[c]},${A*.75})`);g.addColorStop(1,`rgba(${COLS[c]},0)`);grads[c][a]=g}}
+  lightP.x=W/2;lightP.y=H*.45;grads=[];for(let c=0;c<COLS.length;c++){grads[c]=[];for(let a=0;a<3;a++){const A=[.16,.3,.55][a],g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(${COLS[c]},${A})`);g.addColorStop(.55,`rgba(${COLS[c]},${A*.75})`);g.addColorStop(1,`rgba(${COLS[c]},0)`);grads[c][a]=g}}
 }
 let grads=[];const pieces=[];const lightP={x:0,y:0};let cutY=0,cutP=0,lastT=0;
 const fc2=$('#fall'),fx=fc2.getContext('2d');let FW=0,FH=0;
@@ -461,13 +461,7 @@ function drawHair(tm){
     P.lineTo(px,py);
   }
   for(const key in paths){const [c,al,w]=key.split('_').map(Number);cx.strokeStyle=grads[c][al];cx.lineWidth=w?1.15:.55;cx.stroke(paths[key])}
-  /* контровой свет: тёплое сияние за волосами по всему кадру */
-  cx.globalCompositeOperation='destination-over';
-  const lx=W*(.5+.08*Math.sin(tt*.11)),ly=H*(.34+.04*Math.sin(tt*.17)),br=.9+.1*Math.sin(tt*.5);
-  let lg=cx.createRadialGradient(lx,ly,0,lx,ly,Math.max(W,H)*.85);
-  lg.addColorStop(0,`rgba(255,222,190,${.30*br})`);lg.addColorStop(.35,`rgba(226,170,225,${.16*br})`);lg.addColorStop(.75,'rgba(120,70,40,.06)');lg.addColorStop(1,'rgba(26,15,0,0)');
-  cx.fillStyle=lg;cx.fillRect(0,0,W,H);
-  cx.globalCompositeOperation='source-over';
+
   m.vx*=.9;
 }
 let heroVis=true;
