@@ -377,9 +377,9 @@ function sizeHair(){DPR=Math.min(devicePixelRatio||1,1.5);W=cv.clientWidth;H=cv.
       strands.push({x:lx+(Math.random()-.5)*W/nLocks*1.6,len:llen*(.82+Math.random()*.24),seg,ph:lph+(Math.random()-.5)*.5,amp:lamp*(.8+Math.random()*.4),curl,cph:Math.random()*6.28,
         c:r<.12?4:r<.22?2:r<.3?1:base,al:Math.random()<.15?2:Math.random()<.5?1:0,w:Math.random()<.2?1:0,
         off:new Float32Array(seg+1),offy:new Float32Array(seg+1)});strands[strands.length-1].cut=strands[strands.length-1].len;strands[strands.length-1].th=.04+Math.random()*.5}}
-  grads=[];for(let c=0;c<COLS.length;c++){grads[c]=[];for(let a=0;a<3;a++){const A=[.16,.3,.55][a],g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(${COLS[c]},${A})`);g.addColorStop(.55,`rgba(${COLS[c]},${A*.75})`);g.addColorStop(1,`rgba(${COLS[c]},0)`);grads[c][a]=g}}
+  lightP.x=W/2;lightP.y=H*.45;grads=[];for(let c=0;c<COLS.length;c++){grads[c]=[];for(let a=0;a<3;a++){const A=[.16,.3,.55][a],g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(${COLS[c]},${A})`);g.addColorStop(.55,`rgba(${COLS[c]},${A*.75})`);g.addColorStop(1,`rgba(${COLS[c]},0)`);grads[c][a]=g}}
 }
-let grads=[];const pieces=[];let cutY=0,cutP=0,lastT=0;
+let grads=[];const pieces=[];const lightP={x:0,y:0};let cutY=0,cutP=0,lastT=0;
 const fc2=$('#fall'),fx=fc2.getContext('2d');let FW=0,FH=0;
 function sizeFall(){FW=innerWidth;FH=innerHeight;fc2.width=FW*DPR;fc2.height=FH*DPR;fx.setTransform(DPR,0,0,DPR,0,0)}
 function pt(s,k,tt){const j=Math.min(s.seg,Math.round(k*s.seg));let sw=Math.sin(tt*.7+s.ph+k*2.2)*s.amp*k+Math.sin(tt*.31+s.ph*2)*8*k;if(s.curl)sw+=Math.sin(k*s.curl*9+s.cph+tt*.4)*14*k*k*k;return[s.x+sw+s.off[j],-20+k*s.len+s.offy[j]]}
@@ -396,12 +396,14 @@ function drawHair(tm){
       s.cut=target;
     }else if(target>s.cut){s.cut+=(target-s.cut)*.04}
     const kmax=Math.min(1,s.cut/full);
+    {const w1=Math.sin(tt*.42-s.x*.0045),w2=Math.sin(tt*.19-s.x*.0021+1.7);const g=Math.max(0,w1*.65+w2*.35);s.wind=g*g*(18+10*Math.sin(tt*.13))}
     const key=s.c+'_'+s.al+'_'+s.w;const P=paths[key]||(paths[key]=new Path2D());
     let px=s.x,py=-20;P.moveTo(px,py);
     for(let j=1;j<=s.seg;j++){
       const k=Math.min(j/s.seg,kmax),y=-20+k*full;
       let sway=Math.sin(tt*.7+s.ph+k*2.2)*s.amp*k+Math.sin(tt*.31+s.ph*2)*8*k;
       if(s.curl)sway+=Math.sin(k*s.curl*9+s.cph+tt*.4)*14*k*k*k;
+      sway+=s.wind*k*k;
       const bx=s.x+sway;
       const dx=bx+s.off[j]-m.x,dy=y-m.y,d=Math.hypot(dx,dy),R=130;
       let tx=0,ty=0;
@@ -414,6 +416,19 @@ function drawHair(tm){
     P.lineTo(px,py);
   }
   for(const key in paths){const [c,al,w]=key.split('_').map(Number);cx.strokeStyle=grads[c][al];cx.lineWidth=w?1.15:.55;cx.stroke(paths[key])}
+  /* свет: блик на волосах за курсором, без курсора — медленно гуляет сам */
+  const tx=m.on?m.x:W*(.5+.32*Math.sin(tt*.21)),ty=m.on?m.y:H*(.42+.18*Math.sin(tt*.33+1));
+  lightP.x+=(tx-lightP.x)*.07;lightP.y+=(ty-lightP.y)*.07;
+  const R=Math.max(220,Math.min(W,H)*.38);
+  cx.globalCompositeOperation='source-atop';
+  let lg=cx.createRadialGradient(lightP.x,lightP.y,0,lightP.x,lightP.y,R);
+  lg.addColorStop(0,'rgba(255,244,230,.9)');lg.addColorStop(.35,'rgba(238,205,245,.45)');lg.addColorStop(1,'rgba(255,255,255,0)');
+  cx.fillStyle=lg;cx.fillRect(0,0,W,H);
+  cx.globalCompositeOperation='destination-over';
+  lg=cx.createRadialGradient(lightP.x,lightP.y,0,lightP.x,lightP.y,R*1.4);
+  lg.addColorStop(0,'rgba(236,190,240,.24)');lg.addColorStop(.45,'rgba(215,165,227,.08)');lg.addColorStop(1,'rgba(215,165,227,0)');
+  cx.fillStyle=lg;cx.fillRect(0,0,W,H);
+  cx.globalCompositeOperation='source-over';
   m.vx*=.9;
 }
 let heroVis=true;
