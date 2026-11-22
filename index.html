@@ -139,7 +139,19 @@ nav.top a:hover{color:var(--ink)}
 .fly .team{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:6px;padding:6px;transform:scale(1.15);will-change:transform}
 .fly .team img{width:100%;height:100%;object-fit:cover;min-height:0}
 @media(max-width:600px){.fly .team{grid-template-columns:repeat(2,minmax(0,1fr))}}
-#fly3{height:220vh}
+#fly3,.fly-s{height:220vh}
+.fly .cap .hico{width:.8em;height:.8em;vertical-align:-.08em}
+.fly .team .bt{display:grid;place-items:center;background:radial-gradient(circle at 50% 55%,#efd3f5,#c993d8 80%)}
+.fly .team .bt svg{width:34%;height:auto}
+.fly .mapbg{position:absolute;inset:0;transform:scale(1.15);will-change:transform;background:
+ linear-gradient(28deg,transparent 47%,rgba(26,15,0,.55) 47.3%,rgba(26,15,0,.55) 48.4%,transparent 48.7%),
+ linear-gradient(-62deg,transparent 58%,rgba(26,15,0,.45) 58.2%,rgba(26,15,0,.45) 59.6%,transparent 59.8%),
+ linear-gradient(95deg,transparent 30%,rgba(26,15,0,.35) 30.2%,rgba(26,15,0,.35) 31%,transparent 31.2%),
+ linear-gradient(0deg,transparent 70%,rgba(26,15,0,.3) 70.2%,rgba(26,15,0,.3) 70.9%,transparent 71.1%),
+ repeating-linear-gradient(0deg,transparent 0 46px,rgba(26,15,0,.1) 46px 47px),
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(26,15,0,.1) 46px 47px),
+ radial-gradient(circle at 50% 50%,#f0d6f5,#c48fd3 75%)}
+.fly .mpin{position:absolute;left:50%;top:50%;width:min(22vw,160px);height:auto;transform:translate(-50%,-90%);filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
 .fly .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:6px;padding:6px;align-content:start;transform:scale(1.15);transform-origin:center 40%;will-change:transform}
 .fly .mos button{position:relative;display:block;padding:0;border:0;background:#0e0800;overflow:hidden;cursor:zoom-in;aspect-ratio:4/5}
 .fly .mos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s,transform .6s,filter .6s;filter:saturate(.9)}
@@ -238,6 +250,9 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
   <symbol id="b-care" viewBox="0 0 60 120"><g fill="none" stroke="#D7A5E3" stroke-width="2"><rect x="24" y="4" width="12" height="14" rx="2"/><path d="M22 18h16v8c8 4 12 10 12 18v66a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V44c0-8 4-14 12-18z"/><path d="M10 62h40M10 92h40" opacity=".5"/></g></symbol>
   <symbol id="b-color" viewBox="0 0 60 120"><g fill="none" stroke="#D7A5E3" stroke-width="2"><path d="M12 6h36l-4 84H16z"/><path d="M16 90h28v8H16zM22 98h16v18H22z"/><path d="M13 26h34" opacity=".5"/></g></symbol>
   <symbol id="b-style" viewBox="0 0 60 120"><g fill="none" stroke="#D7A5E3" stroke-width="2"><rect x="8" y="38" width="44" height="12" rx="3"/><path d="M10 50h40v50a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8z"/><path d="M10 64h40" opacity=".5"/></g></symbol>
+  <symbol id="d-care" viewBox="0 0 60 120"><g fill="none" stroke="#1a0f00" stroke-width="2.4"><rect x="24" y="4" width="12" height="14" rx="2"/><path d="M22 18h16v8c8 4 12 10 12 18v66a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V44c0-8 4-14 12-18z"/><path d="M10 62h40M10 92h40" opacity=".5"/></g></symbol>
+  <symbol id="d-color" viewBox="0 0 60 120"><g fill="none" stroke="#1a0f00" stroke-width="2.4"><path d="M12 6h36l-4 84H16z"/><path d="M16 90h28v8H16zM22 98h16v18H22z"/><path d="M13 26h34" opacity=".5"/></g></symbol>
+  <symbol id="d-style" viewBox="0 0 60 120"><g fill="none" stroke="#1a0f00" stroke-width="2.4"><rect x="8" y="38" width="44" height="12" rx="3"/><path d="M10 50h40v50a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8z"/><path d="M10 64h40" opacity=".5"/></g></symbol>
 </svg>
 
 <header id="hdr">
@@ -298,6 +313,14 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 </div></section>
 
 
+<section class="fly fly-s" id="fly4" aria-hidden="true">
+  <div class="stick">
+    <div class="team" id="mos4"></div>
+    <svg class="mask" style="pointer-events:none"><defs><mask id="mk4"><rect width="100%" height="100%" fill="#fff"/><text id="w4" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">УСЛУГИ</text></mask></defs><rect id="c4" width="100%" height="100%" fill="#1a0f00" mask="url(#mk4)"/></svg>
+    <div class="cap" id="cap4"><span id="cap4t"></span> <b>[ ₪ ]</b></div>
+  </div>
+</section>
+
 <section class="band" id="services"><div class="wrap">
   <h2 class="rv"><span data-t="svc_h">Услуги</span> <span class="br">[ ₪ ]</span></h2>
   <p class="lead rv" data-t="svc_lead">Точную цену назовём после консультации — она зависит от длины и задачи. Записаться — по телефону или в WhatsApp.</p>
@@ -314,6 +337,14 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
   </section>
 </section>
 
+<section class="fly fly-s" id="fly5" aria-hidden="true">
+  <div class="stick">
+    <div class="team" id="mos5"></div>
+    <svg class="mask" style="pointer-events:none"><defs><mask id="mk5"><rect width="100%" height="100%" fill="#fff"/><text id="w5" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">МАГАЗИН</text></mask></defs><rect id="c5" width="100%" height="100%" fill="#1a0f00" mask="url(#mk5)"/></svg>
+    <div class="cap" id="cap5"><span id="cap5t"></span> <b>[ <svg class="hico" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" d="M5 8h14l-1 13H6L5 8zm4 0V6a3 3 0 0 1 6 0v2"/></svg> ]</b></div>
+  </div>
+</section>
+
 <section class="band" id="shop" style="background:var(--bg2)"><div class="wrap">
   <h2 class="rv"><span data-t="shop_h">Магазин</span> <span class="br">[ <svg class="hico" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" d="M5 8h14l-1 13H6L5 8zm4 0V6a3 3 0 0 1 6 0v2"/></svg> ]</span></h2>
   <p class="lead rv" data-t="shop_lead">Профессиональные средства для окрашивания и ухода — те же, с которыми мы работаем в студии. Соберите заказ, он придёт мастеру в WhatsApp, а забрать и оплатить можно в студии.</p>
@@ -325,6 +356,14 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
     <div><b data-t="h3">Заберите</b><span data-t="h3d">Оплата и выдача — в студии</span></div>
   </div>
 </div></section>
+
+<section class="fly fly-s" id="fly6" aria-hidden="true">
+  <div class="stick">
+    <div class="mapbg" id="mos6"><svg class="mpin" viewBox="0 0 24 24"><path fill="#1a0f00" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+    <svg class="mask" style="pointer-events:none"><defs><mask id="mk6"><rect width="100%" height="100%" fill="#fff"/><text id="w6" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">КОНТАКТЫ</text></mask></defs><rect id="c6" width="100%" height="100%" fill="#1a0f00" mask="url(#mk6)"/></svg>
+    <div class="cap" id="cap6"><span id="cap6t"></span> <b>[ ⌂ ]</b></div>
+  </div>
+</section>
 
 <section class="band" id="contacts"><div class="wrap">
   <h2 class="rv"><span data-t="ct_h">Контакты</span> <span class="br">[ ⌂ ]</span></h2>
@@ -362,10 +401,10 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 {
 /* Тексты интерфейса. Всё содержимое (фото, товары, тексты о себе, контакты) — в папке data/ и редактируется через Pages CMS */
 const T={ru:{},
- en:{n_about:'About',n_svc:'Services',n_works:'Work',n_shop:'Shop',n_ct:'Contact',call:'Call',hint:'Run your cursor through the strands',fly1:'Roots are where it starts',fly2:'20+ years — thousands of looks',about_h:'About us',svc_h:'Services',svc_lead:'We’ll name the exact price after a consultation — it depends on length and goal. Book by phone or WhatsApp.',works_h:'Work',trail_p:'Move your cursor or finger',more:'Show all',less:'Show less',shop_h:'Shop',shop_lead:'Professional colour and care products — the same ones we use in the studio. Build your order, it goes to us on WhatsApp, and you pick up and pay at the studio.',h1:'Choose',h1d:'Add products to the bag',h2:'Send',h2d:'The order goes to us on WhatsApp',h3:'Pick up',h3d:'Pay and collect at the studio',ct_h:'Contact',phone:'Phone',addr:'Address',hours:'Opening hours',route:'Get directions',cart:'Bag',total:'Total',yname:'Your name',send:'Send order via WhatsApp',send_note:'We’ll confirm availability. Pay and collect at the studio.',add:'Add',added:'In bag',na:'Out of stock',empty:'The bag is empty',from:'from',all:'All',color:'Colour',care:'Care',style:'Styling',wa_hi:'Hi! I’d like to order for pickup at KORNI:',wa_name:'Name',wa_tot:'Total',wa_book:'Hi! I’d like to book an appointment at KORNI.',mq:['CUT','COLOUR','CARE','KORNI.TLV']},
- he:{n_about:'אודות',n_svc:'שירותים',n_works:'עבודות',n_shop:'חנות',n_ct:'צור קשר',call:'להתקשר',hint:'העבירו את הסמן בין הקווצות',fly1:'הכל מתחיל מהשורשים',fly2:'מעל 20 שנה — אלפי מראות',about_h:'אודותינו',svc_h:'שירותים',svc_lead:'את המחיר המדויק נגיד אחרי ייעוץ — הוא תלוי באורך ובמטרה. קביעת תור בטלפון או בוואטסאפ.',works_h:'עבודות',trail_p:'הזיזו את הסמן או האצבע',more:'להציג הכל',less:'להציג פחות',shop_h:'חנות',shop_lead:'מוצרים מקצועיים לצבע ולטיפוח — אותם מוצרים שאנחנו עובדים איתם בסטודיו. מרכיבים הזמנה, היא נשלחת אלינו בוואטסאפ, ואוספים ומשלמים בסטודיו.',h1:'בוחרים',h1d:'מוסיפים מוצרים לסל',h2:'שולחים',h2d:'ההזמנה נשלחת אלינו בוואטסאפ',h3:'אוספים',h3d:'תשלום ואיסוף בסטודיו',ct_h:'צור קשר',phone:'טלפון',addr:'כתובת',hours:'שעות פתיחה',route:'לנווט',cart:'סל',total:'סה״כ',yname:'השם שלך',send:'לשלוח הזמנה בוואטסאפ',send_note:'נאשר זמינות. תשלום ואיסוף בסטודיו.',add:'להוסיף',added:'בסל',na:'אזל מהמלאי',empty:'הסל ריק',from:'החל מ-',all:'הכל',color:'צבע',care:'טיפוח',style:'עיצוב',wa_hi:'שלום! אני רוצה להזמין לאיסוף ב-KORNI:',wa_name:'שם',wa_tot:'סה״כ',wa_book:'שלום! אני רוצה לקבוע תור ב-KORNI.',mq:['תספורת','צבע','טיפוח','KORNI.TLV']}};
+ en:{n_about:'About',n_svc:'Services',n_works:'Work',n_shop:'Shop',n_ct:'Contact',call:'Call',hint:'Run your cursor through the strands',fly1:'Roots are where it starts',cap4:'Cut · colour · care',cap5:'Pro care to take home',fly2:'20+ years — thousands of looks',about_h:'About us',svc_h:'Services',svc_lead:'We’ll name the exact price after a consultation — it depends on length and goal. Book by phone or WhatsApp.',works_h:'Work',trail_p:'Move your cursor or finger',more:'Show all',less:'Show less',shop_h:'Shop',shop_lead:'Professional colour and care products — the same ones we use in the studio. Build your order, it goes to us on WhatsApp, and you pick up and pay at the studio.',h1:'Choose',h1d:'Add products to the bag',h2:'Send',h2d:'The order goes to us on WhatsApp',h3:'Pick up',h3d:'Pay and collect at the studio',ct_h:'Contact',phone:'Phone',addr:'Address',hours:'Opening hours',route:'Get directions',cart:'Bag',total:'Total',yname:'Your name',send:'Send order via WhatsApp',send_note:'We’ll confirm availability. Pay and collect at the studio.',add:'Add',added:'In bag',na:'Out of stock',empty:'The bag is empty',from:'from',all:'All',color:'Colour',care:'Care',style:'Styling',wa_hi:'Hi! I’d like to order for pickup at KORNI:',wa_name:'Name',wa_tot:'Total',wa_book:'Hi! I’d like to book an appointment at KORNI.',mq:['CUT','COLOUR','CARE','KORNI.TLV']},
+ he:{n_about:'אודות',n_svc:'שירותים',n_works:'עבודות',n_shop:'חנות',n_ct:'צור קשר',call:'להתקשר',hint:'העבירו את הסמן בין הקווצות',fly1:'הכל מתחיל מהשורשים',cap4:'תספורת · צבע · טיפוח',cap5:'טיפוח מקצועי הביתה',fly2:'מעל 20 שנה — אלפי מראות',about_h:'אודותינו',svc_h:'שירותים',svc_lead:'את המחיר המדויק נגיד אחרי ייעוץ — הוא תלוי באורך ובמטרה. קביעת תור בטלפון או בוואטסאפ.',works_h:'עבודות',trail_p:'הזיזו את הסמן או האצבע',more:'להציג הכל',less:'להציג פחות',shop_h:'חנות',shop_lead:'מוצרים מקצועיים לצבע ולטיפוח — אותם מוצרים שאנחנו עובדים איתם בסטודיו. מרכיבים הזמנה, היא נשלחת אלינו בוואטסאפ, ואוספים ומשלמים בסטודיו.',h1:'בוחרים',h1d:'מוסיפים מוצרים לסל',h2:'שולחים',h2d:'ההזמנה נשלחת אלינו בוואטסאפ',h3:'אוספים',h3d:'תשלום ואיסוף בסטודיו',ct_h:'צור קשר',phone:'טלפון',addr:'כתובת',hours:'שעות פתיחה',route:'לנווט',cart:'סל',total:'סה״כ',yname:'השם שלך',send:'לשלוח הזמנה בוואטסאפ',send_note:'נאשר זמינות. תשלום ואיסוף בסטודיו.',add:'להוסיף',added:'בסל',na:'אזל מהמלאי',empty:'הסל ריק',from:'החל מ-',all:'הכל',color:'צבע',care:'טיפוח',style:'עיצוב',wa_hi:'שלום! אני רוצה להזמין לאיסוף ב-KORNI:',wa_name:'שם',wa_tot:'סה״כ',wa_book:'שלום! אני רוצה לקבוע תור ב-KORNI.',mq:['תספורת','צבע','טיפוח','KORNI.TLV']}};
 document.querySelectorAll('[data-t]').forEach(e=>{T.ru[e.dataset.t]=e.textContent});
-Object.assign(T.ru,{works_h:'Работы',less:'Свернуть',add:'В корзину',added:'В корзине',na:'Нет в наличии',empty:'Корзина пуста',from:'от',all:'Все',color:'Окрашивание',care:'Уход',style:'Стайлинг',wa_hi:'Здравствуйте! Хочу заказать для самовывоза в KORNI:',wa_name:'Имя',wa_tot:'Итого',wa_book:'Здравствуйте! Хочу записаться в KORNI.',mq:['СТРИЖКА','ЦВЕТ','УХОД','KORNI.TLV']});
+Object.assign(T.ru,{cap4:'Стрижка · цвет · уход',cap5:'Профессиональный уход домой',works_h:'Работы',less:'Свернуть',add:'В корзину',added:'В корзине',na:'Нет в наличии',empty:'Корзина пуста',from:'от',all:'Все',color:'Окрашивание',care:'Уход',style:'Стайлинг',wa_hi:'Здравствуйте! Хочу заказать для самовывоза в KORNI:',wa_name:'Имя',wa_tot:'Итого',wa_book:'Здравствуйте! Хочу записаться в KORNI.',mq:['СТРИЖКА','ЦВЕТ','УХОД','KORNI.TLV']});
 
 let L='ru';try{L=localStorage.getItem('korni_lang')||'ru'}catch(e){}
 if(!T[L])L='ru';
@@ -467,7 +506,7 @@ hero.addEventListener('touchmove',e=>{const p=e.touches[0];mv(p.clientX,p.client
 
 /* ===== полёт сквозь буквы ===== */
 const ff=$('#flyFull');
-const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82},{sec:$('#fly3'),word:$('#w3'),cover:$('#c3'),bg:$('#mos3'),cap:$('#cap3'),fit:.7}];
+const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82},{sec:$('#fly3'),word:$('#w3'),cover:$('#c3'),bg:$('#mos3'),cap:$('#cap3'),fit:.7},{sec:$('#fly4'),word:$('#w4'),cover:$('#c4'),bg:$('#mos4'),cap:$('#cap4'),fit:.82},{sec:$('#fly5'),word:$('#w5'),cover:$('#c5'),bg:$('#mos5'),cap:$('#cap5'),fit:.82},{sec:$('#fly6'),word:$('#w6'),cover:$('#c6'),bg:$('#mos6'),cap:$('#cap6'),fit:.82}];
 function fitWords(){FLIES.forEach(f=>{const st=f.sec.querySelector('.stick');f.cx=st.clientWidth/2;f.cy=st.clientHeight/2;
   f.word.setAttribute('x',f.cx);f.word.setAttribute('y',f.cy);
   f.word.setAttribute('font-size',100);let w=0;try{w=f.word.getComputedTextLength()}catch(e){}if(w)f.word.setAttribute('font-size',Math.min(100*st.clientWidth*f.fit/w,st.clientHeight*.5))})}
@@ -521,6 +560,12 @@ function render(){
   $('#w3').textContent=t('about_h').toUpperCase();
   {const tp=[ab.photo,...(ab.strip||[]).map(x=>x.image)].filter(Boolean).map(src);const n=innerWidth<=600?4:6;
    $('#mos3').innerHTML=tp.length?Array.from({length:n},(_,i)=>`<img src="${esc(tp[i%tp.length])}" alt="">`).join(''):'';}
+  {const n=innerWidth<=600?4:6,gl=G.map(g=>src(g.image)),off=Math.floor(gl.length/2);
+   $('#mos4').innerHTML=gl.length?Array.from({length:n},(_,i)=>`<img src="${esc(gl[(off+i)%gl.length])}" alt="">`).join(''):'';
+   const pi=P.filter(x=>x.image).map(x=>src(x.image)),cats=['care','color','style'];
+   $('#mos5').innerHTML=Array.from({length:n},(_,i)=>pi.length?`<img src="${esc(pi[i%pi.length])}" alt="">`:`<div class="bt"><svg viewBox="0 0 60 120"><use href="#d-${cats[i%3]}"/></svg></div>`).join('');}
+  $('#w4').textContent=t('svc_h').toUpperCase();$('#w5').textContent=t('shop_h').toUpperCase();$('#w6').textContent=t('ct_h').toUpperCase();
+  $('#cap4t').textContent=t('cap4');$('#cap5t').textContent=t('cap5');$('#cap6t').textContent=tr((S.contacts||{}).address);
   $('#cap3t').textContent=(S.masters||[]).map(x=>tr(x.name)).filter(Boolean).join(L==='en'?' & ':L==='he'?' ו':' и ');
   if(calm)$('#mos2').classList.add('live');
   fitWords();(document.fonts&&document.fonts.ready||Promise.resolve()).then(()=>{fitWords();onScroll()});
