@@ -283,17 +283,11 @@ footer{padding:28px max(5vw,16px) 96px;align-items:center;border-top:1px solid v
 </div></section>
 <canvas id="fall" aria-hidden="true"></canvas>
 
-<section class="fly" id="fly" aria-hidden="true">
-  <div class="stick">
-    <div class="full" id="flyFull"></div>
-    <svg class="mask" id="flyMask"><defs><mask id="mk"><rect width="100%" height="100%" fill="#fff"/><text id="flyWord" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">KORNI</text></mask></defs><rect id="flyCover" width="100%" height="100%" fill="#1a0f00" mask="url(#mk)"/></svg>
-    <div class="cap" id="flyCap"><span data-t="fly1">Корни — это начало</span> <b>[hair design]</b></div>
-  </div>
-</section>
+
 
 <section class="fly" id="fly3" aria-hidden="true">
   <div class="stick">
-    <div class="team" id="mos3"></div>
+    <div class="full" id="mos3"></div>
     <svg class="mask" style="pointer-events:none"><defs><mask id="mk3"><rect width="100%" height="100%" fill="#fff"/><text id="w3" x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="#000">О НАС</text></mask></defs><rect id="c3" width="100%" height="100%" fill="#1a0f00" mask="url(#mk3)"/></svg>
     <div class="cap" id="cap3"><span id="cap3t"></span> <b>[ √ ]</b></div>
   </div>
@@ -499,8 +493,7 @@ hero.addEventListener('pointerleave',()=>{m.on=false});
 hero.addEventListener('touchmove',e=>{const p=e.touches[0];mv(p.clientX,p.clientY)},{passive:true});
 
 /* ===== полёт сквозь буквы ===== */
-const ff=$('#flyFull');
-const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82},{sec:$('#fly3'),word:$('#w3'),cover:$('#c3'),bg:$('#mos3'),cap:$('#cap3'),fit:.7},{sec:$('#fly4'),word:$('#w4'),cover:$('#c4'),bg:$('#mos4'),cap:$('#cap4'),fit:.82},{sec:$('#fly5'),word:$('#w5'),cover:$('#c5'),bg:$('#mos5'),cap:$('#cap5'),fit:.82},{sec:$('#fly6'),word:$('#w6'),cover:$('#c6'),bg:$('#mos6'),cap:$('#cap6'),fit:.82}];
+const FLIES=[{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82},{sec:$('#fly3'),word:$('#w3'),cover:$('#c3'),bg:$('#mos3'),cap:$('#cap3'),fit:.7},{sec:$('#fly4'),word:$('#w4'),cover:$('#c4'),bg:$('#mos4'),cap:$('#cap4'),fit:.82},{sec:$('#fly5'),word:$('#w5'),cover:$('#c5'),bg:$('#mos5'),cap:$('#cap5'),fit:.82},{sec:$('#fly6'),word:$('#w6'),cover:$('#c6'),bg:$('#mos6'),cap:$('#cap6'),fit:.82}];
 function fitWords(){FLIES.forEach(f=>{const st=f.sec.querySelector('.stick');f.cx=st.clientWidth/2;f.cy=st.clientHeight/2;
   f.word.setAttribute('x',f.cx);f.word.setAttribute('y',f.cy);
   f.word.setAttribute('font-size',100);let w=0;try{w=f.word.getComputedTextLength()}catch(e){}if(w)f.word.setAttribute('font-size',Math.min(100*st.clientWidth*f.fit/w,st.clientHeight*.5))})}
@@ -547,13 +540,11 @@ function render(){
   $('#strip').innerHTML=(ab.strip||[]).filter(x=>x.image).map(x=>`<img class="rv" src="${esc(src(x.image))}" alt="" loading="lazy">`).join('');
   $('#masters').innerHTML=(S.masters||[]).map(x=>`<div class="rv"><span class="r">${esc(tr(x.role))}</span><b>${esc(tr(x.name))}</b><span class="d">${esc(tr(x.desc))}</span>${x.phone?`<a href="tel:${esc(x.phone.replace(/[^+\d]/g,''))}">${esc(x.phone)}</a>`:''}</div>`).join('');
   $('#slist').innerHTML=(S.services||[]).map(s=>`<div class="srow rv"><span><span class="n">${esc(tr(s.name))}</span>${tr(s.desc)?`<span class="d">${esc(tr(s.desc))}</span>`:''}</span><span class="dots"></span><span class="pr">${s.price?`${t('from')} ${s.price} ₪`:''}</span></div>`).join('');
-  const first=src(S.fly_photo)||(G[0]&&src(G[0].image));if(first){ff.style.backgroundImage=`url("${first}")`}
+  {const fp=src(S.fly_photo)||src(ab.photo);if(fp)$('#mos3').style.backgroundImage=`url("${fp}")`;}
   const cols=+getComputedStyle(document.documentElement).getPropertyValue('--cols')||6,tileH=(innerWidth-12-(cols-1)*6)/cols*1.25,stageN=G.length?cols*Math.ceil(innerHeight/(tileH+6)):0;
   $('#mos2').innerHTML=Array.from({length:stageN},(_,i)=>{const g=G[i%G.length];return `<button data-src="${esc(src(g.image))}" aria-label="${esc(g.caption||t('works_h'))}"><img src="${esc(src(g.image))}" alt="${esc(g.caption||'')}"></button>`}).join('');
   $('#w2').textContent=t('works_h').toUpperCase();
   $('#w3').textContent=t('about_h').toUpperCase();
-  {const tp=[ab.photo,...(ab.strip||[]).map(x=>x.image)].filter(Boolean).map(src);const n=innerWidth<=600?4:6;
-   $('#mos3').innerHTML=tp.length?Array.from({length:n},(_,i)=>`<img src="${esc(tp[i%tp.length])}" alt="">`).join(''):'';}
   {const n=innerWidth<=600?4:6,gl=G.map(g=>src(g.image)),off=Math.floor(gl.length/2);
    $('#mos4').innerHTML=gl.length?Array.from({length:n},(_,i)=>`<img src="${esc(gl[(off+i)%gl.length])}" alt="">`).join(''):'';
    const pi=P.filter(x=>x.image).map(x=>src(x.image)),cats=['care','color','style'];
