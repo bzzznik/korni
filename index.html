@@ -87,7 +87,7 @@ nav.top a:hover{color:var(--ink)}
 .fly .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
 .fly .full{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.15);will-change:transform}
 .fly .mask{position:absolute;inset:0;width:100%;height:100%}
-.fly .mask text{font-family:'BravoRG','Heebo',sans-serif;transform-box:fill-box;transform-origin:center;will-change:transform}
+.fly .mask text{font-family:'BravoRG','Heebo',sans-serif}
 .fly .stick::after{content:"";position:absolute;inset:auto 0 0;height:40vh;background:linear-gradient(transparent,rgba(18,10,0,.85));opacity:var(--cg,0);pointer-events:none}
 .fly .cap{position:absolute;z-index:2;bottom:12vh;left:0;right:0;text-align:center;font:400 clamp(26px,4vw,48px)/1.1 var(--fsc);opacity:0;padding:0 20px;text-shadow:0 2px 30px rgba(0,0,0,.7)}
 .fly .cap b{font-weight:400;color:var(--pink)}
@@ -423,7 +423,9 @@ hero.addEventListener('touchmove',e=>{const p=e.touches[0];mv(p.clientX,p.client
 /* ===== полёт сквозь буквы ===== */
 const ff=$('#flyFull');
 const FLIES=[{sec:$('#fly'),word:$('#flyWord'),cover:$('#flyCover'),bg:ff,cap:$('#flyCap'),fit:.67},{sec:$('#fly2'),word:$('#w2'),cover:$('#c2'),bg:$('#mos2'),cap:$('#cap2'),fit:.82}];
-function fitWords(){FLIES.forEach(f=>{f.word.setAttribute('font-size',100);let w=0;try{w=f.word.getComputedTextLength()}catch(e){}if(w)f.word.setAttribute('font-size',Math.min(100*innerWidth*f.fit/w,innerHeight*.5))})}
+function fitWords(){FLIES.forEach(f=>{const st=f.sec.querySelector('.stick');f.cx=st.clientWidth/2;f.cy=st.clientHeight/2;
+  f.word.setAttribute('x',f.cx);f.word.setAttribute('y',f.cy);
+  f.word.setAttribute('font-size',100);let w=0;try{w=f.word.getComputedTextLength()}catch(e){}if(w)f.word.setAttribute('font-size',Math.min(100*st.clientWidth*f.fit/w,st.clientHeight*.5))})}
 function heroCut(){const h=$('#heroBox').offsetHeight;cutP=Math.max(0,scrollY/h)}
 const clamp=v=>Math.min(1,Math.max(0,v));
 function onScroll(){
@@ -434,7 +436,7 @@ function onScroll(){
   for(const f of FLIES){
     const r=f.sec.getBoundingClientRect();if(r.bottom<-50||r.top>innerHeight+50)continue;
     const span=r.height-innerHeight,p=clamp(-r.top/span);
-    f.word.style.transform=`scale(${1+Math.pow(p,2.4)*70})`;
+    const z=1+Math.pow(p,2.4)*70;f.word.setAttribute('transform',`translate(${f.cx} ${f.cy}) scale(${z}) translate(${-f.cx} ${-f.cy})`);
     f.cover.style.opacity=p>.55?Math.max(0,1-(p-.55)/.12):1;
     f.bg.style.transform=`scale(${1.15-p*.15})`;
     const c=clamp((p-.7)/.15);f.cap.style.opacity=c;f.cap.style.transform=`translateY(${(1-c)*30}px)`;
